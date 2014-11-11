@@ -46,7 +46,7 @@ table {
 td {
 	border: 2px solid black;
 	width: 20%;
-	height: 200px;
+	height: 200%;
 }
 
 
