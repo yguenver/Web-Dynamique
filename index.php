@@ -11,8 +11,8 @@
   	</div>
 		<ul id="menuBarre">
   			<center>
-			<li><a href="http://127.0.0.1/L2SPI/WebDesign/Projet/">Accueil</a></li>
-			<li><a href="#">Nouveautés</a></li>
+			<li><a href="index.php">Accueil</a></li>
+			<li><a href="#">NouveautÃ©s</a></li>
 			<li>
 			<form method="post" name="Trier" >
 				<input type="submit" value="Trier Par:" />
@@ -20,7 +20,7 @@
 					<option value="Nom">Nom</option>
 					<option value="AgeMin">Age</option>
 					<option value="TypeJeux">Genre</option>
-					<option value="Id">Nouveautés</option>
+					<option value="Id">NouveautÃ©s</option>
 				</select>
 				<!--<a>Trier par...</a>
 				<ol class="Trie">
