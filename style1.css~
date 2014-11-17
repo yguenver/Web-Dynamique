@@ -41,12 +41,51 @@ body{
 table {
 	border-collapse: collapse;
 	text-align:  center;
+	width: 100%;
 }
 
 td {
 	border: 2px solid black;
-	width: 20%;
-	height: 200%;
+	width: 25%;
+	height: 200px;
+}
+
+
+
+
+
+
+/********************Ajouté*********************/
+
+
+img.imgListe	{
+	height: 100px;
+	/*width: 100px;*/
+}
+
+
+a.nomJeu {
+	color: black;
+	font-weight: bolder;
+	font: bolder;
+	text-decoration: underline;
+}
+
+a.nomJeu:hover {
+	color: blue;
+}
+
+#menuBarre li.right {
+	float: right;
+}
+
+li.Trie {
+	position: absolute;
+}
+#menuBarre ol li {
+	position: absolute;
+	color: white;
+	/*margin-top: 100px;
 }
 
 

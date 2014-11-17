@@ -2,7 +2,7 @@
   <head>
 		<meta content="text/html; charset=utf-8" />
 		<link rel="stylesheet" type="text/css" href="style1.css" media="all" />
-    	<title>Site Web</title>
+    	<title>Productix</title>
   </head>
   <body>
   	<div id="entetePage">
@@ -11,40 +11,44 @@
   	</div>
 		<ul id="menuBarre">
   			<center>
-			<li><a href="#">Accueil</a></li>
-			<li><a href="#">Promotions</a></li>
+			<li><a href="http://127.0.0.1/L2SPI/WebDesign/Projet/">Accueil</a></li>
+			<li><a href="#">Nouveautés</a></li>
+			<li>
+			<form method="post" >
+				<input type="submit" value="Trier Par:" />
+				<select name="searchBy">
+					<option value="Nom">Nom</option>
+					<option value="AgeMin">Age</option>
+					<option value="TypeJeux">Genre</option>
+					<option value="Id">Nouveautés</option>
+				</select>
+				<!--<a>Trier par...</a>
+				<ol class="Trie">
+					<li>Nom</li>
+					<li>Age</li>
+					<li>Genre</li>
+					<li>Date</li>
+				</ol>
+				-->
+			</form>
+			</li>
+			<li class="right">
+			<form method="post" >
+				<input type="submit" value="Rechercher:" />
+				<select name="selectSearch">
+					<option value="Nom">Nom</option>
+					<option value="AgeMin">Age</option>
+					<option value="TypeJeux">Type de Jeu</option>
+				</select>
+				<input name="searchVal" />
+			</form>
+			</li>
 			</center>
 		</ul>
 		<table>
-			<?php				
-				$leFichier = fopen("data.base", "r");
-				if($leFichier != NULL)
-				{
-					$element = 0;
-					
-					echo '<tr>';
-					$indice = 0;
-					while(!feof($leFichier) &&(strcmp($element, "##") != 0))
-					{
-						$element = trim(fgets($leFichier));
-						if($indice %5 == 0 ) {echo '</tr><tr>';}
-						echo '<td><p>';
-							$indice++;
-						if(!feof($leFichier) && (strcmp($element, "//") != 0) && (strcmp($element, "##") != 0))
-						{
-							echo'<b><u>'.$element.'</u></b>';
-							$element = trim(fgets($leFichier));
-						}
-						while(!feof($leFichier) && (strcmp($element, "//") != 0) && (strcmp($element, "##") != 0))
-						{
-								echo "<br>".$element;
-							$element = trim(fgets($leFichier));
-						}
-						echo '</p></td>';
-					}
-					echo '</tr>';
-					echo '<br>salut';
-				}
+			<?php
+				include('connexion.php');
+				include('Afficher.php');
 			?>
 			
 		</table>
