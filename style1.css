@@ -89,3 +89,45 @@ li.Trie {
 }
 */
 
+input.menu {
+	text-decoration: none;
+	color: white;
+	background-color: black;
+	border-color: black;
+}
+
+input.menu:hover {
+	text-decoration: underline;
+	color: lightskyblue;
+}
+
+
+img.attachment {
+	height: 75px;
+	position: relative;
+	
+}
+
+#menuConnex{
+	height: 30px;
+	text-align: right;
+	background-color: black;
+	padding : 0;
+}
+
+#menuConnex input {
+	margin-top: 5px;
+	margin-right: 5px;
+	width: 100px;
+}
+
+#menuConnex a{
+	margin-right: 5px;
+	color: white;
+	text-decoration: none;
+}
+
+#menuConnex a:hover{
+	text-decoration: underline;
+	color: lightskyblue;
+}

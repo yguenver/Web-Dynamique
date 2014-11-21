@@ -1,7 +1,8 @@
 <?php
-				include('connexion.php');
-				include('Afficher.php');
-
+	echo 'faut danser';
+	//include('Afficher.php');
+	
+	include('AfficherMesProduits.php');
 ?>
 <html>
   <head>
@@ -10,12 +11,11 @@
     	<title>Productix</title>
   </head>
   <body>
-  <div id="menuConnex"><form name="Connexion" method="post" id="Connexion" action="MonPanier">
+  <div id="menuConnex"><form name="Connexion" method="post">
   <input type="text" name="login" value="Login" />   
   <input type="password" name="mdp" value="Password" /> 
-  <input type="hidden" name="connect"/>
-  <!--<a href="MonPanier.php"  >--><input type="submit" name="connect" value="Connexion" /><!--</a>-->
- <!-- <a href="" onclick='document.getElementById("Connexion").submit' >Connexion</a>-->
+  <input type="submit" name="connect" value="Connexion" />
+  <!--<a href="MonPanier.php" type="submit" name="connect" >Connexion</a>-->
   </form>
   </div>
   	<div id="entetePage">
@@ -65,7 +65,7 @@
 		</ul>
 		<table>
 			<?php
-				AfficherProducts();
+				AfficherMesProduits();
 			?>
 		</table>
     	</div>

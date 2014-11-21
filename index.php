@@ -1,3 +1,8 @@
+<?php
+				include('connexion.php');
+				include('Afficher.php');
+
+?>
 <html>
   <head>
 		<meta content="text/html; charset=utf-8" />
@@ -5,22 +10,35 @@
     	<title>Productix</title>
   </head>
   <body>
+  <div id="menuConnex"><form name="Connexion" method="post" id="Connexion" action="MonPanier.php">
+  <input type="text" name="login" value="Login" />   
+  <input type="password" name="mdp" value="Password" /> 
+  <input type="hidden" name="connect"/>
+  <!--<a href="MonPanier.php"  >--><input type="submit" name="connect" value="Connexion" /><!--</a>-->
+ <!-- <a href="" onclick='document.getElementById("Connexion").submit' >Connexion</a>-->
+  </form>
+  </div>
   	<div id="entetePage">
   		<h1><u>Poductix</u></h1>
   		<p>Les produits comme vous ne les avez jamais vu!</p>
   	</div>
 		<ul id="menuBarre">
   			<center>
-			<li><a href="http://127.0.0.1/L2SPI/WebDesign/Projet/">Accueil</a></li>
-			<li><a href="#">Nouveautés</a></li>
+			<li><a href="index.php">Accueil</a></li> <!-- onclick= document.getElementById("Nouveaute").submit()-->
+			<li>
+				<form id="Nouveautes" name="Nouveautes" method="post" style="margin-top: 5px;" >
+					<input type="submit" name="Nouveaute" class="menu" value="Nouveautés" />
+				</form>
+				<!--<a href="#" onclick='Nouveaute.submit()'>Nouveautés</a>-->
+			</li>
 			<li>
 			<form method="post" name="Trier" >
-				<input type="submit" value="Trier Par:" />
+				<input type="submit" name="Trier" value="Trier Par:" class="menu" />
 				<select name="searchBy">
-					<option value="Nom">Nom</option>
+					<option value="Jeu">Nom</option>
 					<option value="AgeMin">Age</option>
 					<option value="TypeJeux">Genre</option>
-					<option value="Id">Nouveautés</option>
+					<option value="DateDeSortie">Nouveautés</option>
 				</select>
 				<!--<a>Trier par...</a>
 				<ol class="Trie">
@@ -34,24 +52,22 @@
 			</li>
 			<li class="right">
 			<form method="post" >
-				<input type="submit" value="Rechercher:" />
+				<input type="submit" name="Rechercher" value="Rechercher:" class="menu" />
 				<select name="selectSearch">
 					<option value="Nom">Nom</option>
 					<option value="AgeMin">Age</option>
 					<option value="TypeJeux">Type de Jeu</option>
 				</select>
-				<input name="searchVal" />
+				<input type="text" name="searchVal" />
 			</form>
 			</li>
 			</center>
 		</ul>
 		<table>
 			<?php
-				include('connexion.php');
-				include('Afficher.php');
+				AfficherProducts();
 			?>
-			
 		</table>
-    </div>
-  </body>
+    	</div>
+  	</body>
 </html>

@@ -78,14 +78,47 @@ a.nomJeu:hover {
 #menuBarre li.right {
 	float: right;
 }
-
+/*
 li.Trie {
 	position: absolute;
 }
 #menuBarre ol li {
 	position: absolute;
 	color: white;
-	/*margin-top: 100px;
+	margin-top: 100px;
+}
+*/
+
+input.menu {
+	text-decoration: none;
+	color: white;
+	background-color: black;
+	border-color: black;
+}
+
+input.menu:hover {
+	text-decoration: underline;
+	color: lightskyblue;
+}
+
+
+img.attachment {
+	height: 75px;
+	position: relative;
+	
+}
+
+#menuConnex{
+	height: 30px;
+	text-align: right;
+	background-color: black;
+	padding : 0;
+}
+
+#menuConnex input {
+	margin-top: 5px;
+	margin-right: 5px;
+	width: 100px;
 }
 
 
