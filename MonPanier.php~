@@ -1,8 +1,12 @@
 <?php
-	echo 'faut danser';
+	//echo 'faut danser';
 	//include('Afficher.php');
-	
+	//	session_start();
+	if(!isset($_SESSION['login'])) { session_start();include('connexion.php');}
 	include('AfficherMesProduits.php');
+	include('AjouterAuPanier.php')
+	//include('connexion.php');
+	//include ('connexionLogin.php');
 ?>
 <html>
   <head>
@@ -11,10 +15,9 @@
     	<title>Productix</title>
   </head>
   <body>
-  <div id="menuConnex"><form name="Connexion" method="post">
-  <input type="text" name="login" value="Login" />   
-  <input type="password" name="mdp" value="Password" /> 
-  <input type="submit" name="connect" value="Connexion" />
+  <div id="menuConnex"><form name="Connexion" method="post" action="index.php" action="deconnexion.php">
+  <div class="bienvenu">Bienvenu <?php echo $_SESSION['login'] ?>
+  <input type="submit" name="disconnect" value="Deconnexion" /></div>
   <!--<a href="MonPanier.php" type="submit" name="connect" >Connexion</a>-->
   </form>
   </div>
@@ -24,9 +27,13 @@
   	</div>
 		<ul id="menuBarre">
   			<center>
-			<li><a href="index.php">Accueil</a></li> <!-- onclick= document.getElementById("Nouveaute").submit()-->
 			<li>
-				<form id="Nouveautes" name="Nouveautes" method="post" style="margin-top: 5px;" >
+				<form id="Accueil" name="Accueil" method="post" class="menu" >
+					<input type="submit" name="Accueil" class="menu" value="Accueil" />
+				</form>
+			<!--<a href="">Accueil</a></li> <!-- onclick= document.getElementById("Nouveaute").submit()-->
+			<li>
+				<form id="Nouveautes" name="Nouveautes" method="post" class="menu" >
 					<input type="submit" name="Nouveaute" class="menu" value="Nouveautés" />
 				</form>
 				<!--<a href="#" onclick='Nouveaute.submit()'>Nouveautés</a>-->
@@ -65,7 +72,7 @@
 		</ul>
 		<table>
 			<?php
-				include('AfficherMesProduits()');
+				ShowMyProducts();
 			?>
 		</table>
     	</div>

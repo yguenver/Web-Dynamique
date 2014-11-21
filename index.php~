@@ -1,6 +1,10 @@
 <?php
 				include('connexion.php');
 				include('Afficher.php');
+				if(isset($_POST['disconnect']))
+				{
+					include('deconnexion.php');
+				}
 
 ?>
 <html>
@@ -10,7 +14,7 @@
     	<title>Productix</title>
   </head>
   <body>
-  <div id="menuConnex"><form name="Connexion" method="post" id="Connexion" action="MonPanier.php">
+  <div id="menuConnex"><form name="Connexion" method="post" id="Connexion" action="connexionLogin.php">
   <input type="text" name="login" value="Login" />   
   <input type="password" name="mdp" value="Password" /> 
   <input type="hidden" name="connect"/>
@@ -31,7 +35,6 @@
 				</form>
 				<!--<a href="#" onclick='Nouveaute.submit()'>Nouveautés</a>-->
 			</li>
-			<li><a href="index.php">Accueil</a></li>
 			<li>
 			<form method="post" name="Trier" >
 				<input type="submit" name="Trier" value="Trier Par:" class="menu" />
@@ -69,6 +72,6 @@
 				AfficherProducts();
 			?>
 		</table>
-    	</div>
+    	<!--</div>-->
   	</body>
 </html>

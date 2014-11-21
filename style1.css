@@ -131,3 +131,11 @@ img.attachment {
 	text-decoration: underline;
 	color: lightskyblue;
 }
+
+div.bienvenu{
+	color: white;
+}
+
+form.menu {
+	margin-top: 5px;
+}

@@ -1,0 +1,4 @@
+<?php
+echo 'se deconnecter';
+	session_unset();
+?>

@@ -121,4 +121,21 @@ img.attachment {
 	width: 100px;
 }
 
+#menuConnex a{
+	margin-right: 5px;
+	color: white;
+	text-decoration: none;
+}
 
+#menuConnex a:hover{
+	text-decoration: underline;
+	color: lightskyblue;
+}
+
+div.bienvenu{
+	color: white;
+}
+
+form.menu {
+	margin-top: 5px;
+}
