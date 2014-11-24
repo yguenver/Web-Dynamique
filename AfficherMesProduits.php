@@ -277,9 +277,9 @@ if($_SESSION['login'] != "arthur")
 		echo '<br>Nom: <input type="text" name="NomJeuModif" />';
 		echo '<br>Age minimum: <input type="text" name="AgeMinJeuModif" />';
 		echo '<br>Age maximum: <input type="text" name="AgeMaxJeuModif" />';
-		echo '<br>Type jeu: <input type="text" name="TypeJeuModif" value="famille, cartes..." />';
+		echo '<br>Type jeu: <input type="text" name="TypeJeuModif" />';
 		echo '<br>Description: <input type="textarea" name="DescriptionJeuModif" style="widht=100px; height = 100px;" />';
-		echo '<br>Date de sortie: <input type="text" name="DateSortieJeuModif" value="1999-12-31" />';
+		echo '<br>Date de sortie: <input type="text" name="DateSortieJeuModif" />';
 		echo '<br>Nombre de Jeux: <input type="text" name="NbJeuModif"  />';
 		echo '<br>Nombre de Jeux disponibles: <input type="text" name="NbDispoJeuModif" />';
 		echo '<br><input type="submit" name="ModifierLeJeu" value="Modifier le jeu" />';
