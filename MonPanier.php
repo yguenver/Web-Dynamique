@@ -68,6 +68,11 @@
 				<input type="text" name="searchVal" />
 			</form>
 			</li>
+			<li>
+				<form id="MonPanier" name="MonPanier" method="post" class="menu" >
+					<input type="submit" name="MonPanier" class="menu" value="Mon Panier" />
+				</form>
+			</li>
 			</center>
 		</ul>
 		<table>

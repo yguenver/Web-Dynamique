@@ -22,7 +22,6 @@ function ShowMyProducts() {
 		if(isset($_SESSION['login']))
 		{
 			$loginClient = $_SESSION['login'];
-				echo "Bienvenu ".$loginClient;
 			//echo $loginClient.'<br>';
 			//echo  mysql_result(mysql_query("SELECT Mdp FROM client WHERE Login = '".$loginClient."'"), 0);
 			/*if($LeClient = mysql_result(mysql_query("SELECT Mdp FROM client".$Where), 0) == $mdpClient)
@@ -92,21 +91,25 @@ function ShowMyProducts() {
 						$Select = "SELECT * FROM jeux";
 					}
 						
-					
+							if($Select == "SELECT * FROM jeux WHERE DateDeSortie >= '".date_format($LastWeek, 'Y-m-d')."'")
+							echo "<center><u>Vos Réservations</u></center>";
 						
 						$calculNb = "SELECT COUNT(*) FROM jeux";
 							if($Where != NULL){$calculNb = $calculNb.$Where;}
 							$Select .= $Order;
 						$nbResult = mysql_result(mysql_query($calculNb), 0);
+						
+						//$produitsClients = "SELECT * FROM paniers".$Where;
+						//$mesProduits = mysql_fetch_assoc(mysql_query($produitsClients));
 							
 						$result = mysql_query($Select);
 						
-						echo $Where.' / '.$calculNb.' / '.$nbResult.'<br>'.$Select.'<br>'.$result;
+						//echo $Where.' / '.$calculNb.' / '.$nbResult.'<br>'.$Select.'<br>'.$result;
 					
 						$indice = 0;	
 
 						
-						if(isset($_SESSION['jeu']))
+						/*if(isset($_SESSION['jeu']))
 						{
 							$Produit = "SELECT * FROM jeux WHERE Jeu ='".$_SESSION['jeu']."'";
 							$dataset= mysql_fetch_assoc(mysql_query($Produit));
@@ -118,7 +121,7 @@ function ShowMyProducts() {
 								echo '<input type="submit" name="AjouterNombre" value="Ajouter"></form>';
 							}else 
 							{
-								$_INSERT = "INSERT INTO "
+								$INSERT = "INSERT INTO ";
 							}
 							if($dataset['DateDeSortie'] >= date_format($dateToday, 'Y-m-d'))
 							{
@@ -146,7 +149,7 @@ function ShowMyProducts() {
 							/*echo '<input type="submit" style="height: 100px;"';
 							if($nbResult == 1){echo ' style="height: 500px"';}
 							echo ' src="IMG/'.$dataset["NomImage"].'" alt="'.$dataset["Jeu"].'" name="AfficherProduit_"/ value="result"><br>';
-							*/
+							///////////etoile/
 							if($dataset["AgeMax"] != 666)
 							{
 								echo "<u>de ".$dataset["AgeMin"]." à ".$dataset["AgeMax"]." ans</u><br>";
@@ -157,9 +160,14 @@ function ShowMyProducts() {
 								echo '<b>'.$dataset["TypeJeux"].'</b><br>';
 							echo $dataset["Description"].'</p>';
 							echo '</form></td>';
-						}
-							
-							
+						}*/
+						
+							$nbJeu = 0;
+							if(isset($_SESSION['login']))
+							{
+								$selection = "SELECT COUNT(*) FROM paniers WHERE Client = '".$_SESSION['login']."'";
+								$nbJeu = mysql_result(mysql_query($selection),0 );
+							}
 						echo '<table><tr>';
 						while($dataset = mysql_fetch_array($result))
 						{
@@ -209,11 +217,17 @@ function ShowMyProducts() {
 								echo '<b>'.$dataset["TypeJeux"].'</b><br>';
 							echo $dataset["Description"].'</p>';
 							echo '<form method="post" ';
-							if(isset($_SESSION['login'])) {echo ' action="AjouterAuPanier.php?NomJeu='.$dataset["Jeu"].'" ><input type="submit" value="';
+							if(isset($_SESSION['login']))
+							{
+									echo ' action="AjouterAuPanier.php?NomJeu='.$dataset["Jeu"].'" >';
+									if(isset($dataset['CreneauMin']))
+								echo '<u>Créneaux de réservation:</u> <br>de '.$dataset['CreneauMin'].' à '.$dataset['CreneauMax'];
+							$selection = "SELECT * FROM paniers WHERE Jeu = '".$dataset['Jeu']."' AND Client = '".$_SESSION['login']."'";
+							//echo $selection;
+							$resultat = mysql_fetch_assoc(mysql_query($selection));
 							}else {echo ' action="pageConnexion.php"';}
-							if(isset($_SESSION['login'])){echo 'Ajouter au panier" name="'/*.$dataset["Jeu"]*/.'_AjoutPanier" />';
-								}else {
-									echo 'Retirer du panier" name="'/*.$dataset["Jeu"]*/.'_RetirePanier" />';
+							if(isset($_SESSION['login']) && $resultat != NULL) {
+									echo '<br><input type="submit" value="Retirer du panier" name="'/*.$dataset["Jeu"]*/.'_RetirePanier" />';
 								}
 							echo '</form></td>';
 						}

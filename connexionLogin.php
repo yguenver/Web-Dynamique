@@ -21,6 +21,11 @@
 					$_SESSION['login'] = $_POST['login'];
 					//echo "Bienvenu ".$loginClient;
 					include('MonPanier.php');
+					$today = date_create('Now');
+					$selection = "DELETE FROM paniers WHERE CreneauMax < '". date_format($today, "Y-m-d H:i:s")."'";
+					echo $selection;
+					mysql_query($selection);
+					
 				}
 			}else {include('pageConnexion.php');}
 		}

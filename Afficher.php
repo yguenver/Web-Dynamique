@@ -20,7 +20,7 @@ if(isset($_POST['connect']))
 		//echo  mysql_result(mysql_query("SELECT Mdp FROM client WHERE Login = '".$loginClient."'"), 0);
 		if($LeClient = mysql_result(mysql_query("SELECT Mdp FROM client WHERE Login = '".$loginClient."'"), 0) == $mdpClient)
 		{
-			echo "Bienvenu ".$loginClient;
+			//echo "Bienvenu ".$loginClient;
 			include('MonPanier.php');
 		}
 	}
@@ -110,6 +110,13 @@ if(isset($_POST['connect']))
 						if($Where != NULL){$calculNb = $calculNb.$Where;}
 				 		$calculNb = $calculNb.$Order;
 					$nbResult = mysql_result(mysql_query($calculNb), 0);
+					
+							$nbJeu = 0;
+							if(isset($_SESSION['login']))
+							{
+								$selection = "SELECT COUNT(*) FROM paniers WHERE Client = '".$_SESSION['login']."'";
+								$nbJeu = mysql_result(mysql_query($selection), 0);
+							}
 						
 				//echo $Where.' / '.$calculNb.' / '.$nbResult.'<br>'.$Select;
 					$indice = 0;	
@@ -159,10 +166,30 @@ if(isset($_POST['connect']))
 						if($dataset["TypeJeux"] != NULL)
 							echo '<b>'.$dataset["TypeJeux"].'</b><br>';
 						echo $dataset["Description"].'</p>';
-						echo '<form method="post" action="MonPanier.php?Selection='.$dataset["Jeu"].'"><input type="submit" value="';
-						if($LeClient == NULL){echo 'Ajouter au panier" name="'.$dataset["Jeu"].'_AjoutPanier" />';}else {
-							echo 'Retirer du panier" name="'/*.$dataset["Jeu"]*/.'_RetirePanier" />';}
-						echo '</form>';
+						echo '<form method="post" ';
+							if(isset($_SESSION['login']))
+							{
+									echo ' action="AjouterAuPanier.php?NomJeu='.$dataset["Jeu"].'" >';
+								echo '<u>Créneaux de réservation:</u> <br>de '.$dataset['CreneauMin'].' à '.$dataset['CreneauMax'];
+							$selection = "SELECT * FROM paniers WHERE Jeu = '".$dataset['Jeu']."' AND Client = '".$_SESSION['login']."'";
+							//echo $selection;
+							$resultat = mysql_fetch_assoc(mysql_query($selection));
+							}else {echo ' action="pageConnexion.php"';}
+							if($nbJeu < 3){echo '<br><input type="submit" value="Ajouter au panier" name="_AjoutPanier" />';
+								}elseif(isset($_SESSION['login']) && $resultat != NULL) {
+									echo '<br><input type="submit" value="Retirer du panier" name="_RetirePanier" />';
+								}
+							echo '</form></td>';
+							
+							/*
+							if(isset($_SESSION['login'])) {echo ' action="AjouterAuPanier.php?NomJeu='.$dataset["Jeu"].'" >';
+							}else {echo ' action="pageConnexion.php" >';}
+							echo '<input type="submit" value="';
+							if($nbJeu < 3){echo 'Ajouter au panier" name="_AjoutPanier" />';
+								}//else {
+									//echo 'Ajouter au panier" name="_RetirePanier" />';
+								//}
+							echo '</form></td>';*/
 					}
 					echo "</tr></table>";
 					

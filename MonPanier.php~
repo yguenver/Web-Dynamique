@@ -4,7 +4,7 @@
 	//	session_start();
 	if(!isset($_SESSION['login'])) { session_start();include('connexion.php');}
 	include('AfficherMesProduits.php');
-	include('AjouterAuPanier.php')
+	//include('AjouterAuPanier.php')
 	//include('connexion.php');
 	//include ('connexionLogin.php');
 ?>
@@ -67,6 +67,11 @@
 				</select>
 				<input type="text" name="searchVal" />
 			</form>
+			</li>
+			<li>
+				<form id="MonPanier" name="MonPanier" method="post" class="menu" >
+					<input type="submit" name="MonPanier" class="menu" value="Mon Panier" />
+				</form>
 			</li>
 			</center>
 		</ul>
