@@ -69,9 +69,16 @@
 			</form>
 			</li>
 			<li>
+			<?php
+				if($_SESSION['login'] == "arthur")
+				{
+					echo '<form id="AjoutJeux" name="AjoutJeux" method="post" class="menu"><input type="submit" name="AjoutJeux" class="menu" value="Ajouter Jeu" /></form>';
+					echo '</li><li><form id="ModifJeux" name="ModifJeux" method="post" class="menu"><input type="submit" name="ModifJeux" class="menu" value="Modifier Jeu" /></form>'
+				}else {echo'
 				<form id="MonPanier" name="MonPanier" method="post" class="menu" >
 					<input type="submit" name="MonPanier" class="menu" value="Mon Panier" />
-				</form>
+				</form>';}
+			?>
 			</li>
 			</center>
 		</ul>

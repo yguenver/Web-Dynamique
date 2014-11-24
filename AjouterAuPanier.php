@@ -2,6 +2,7 @@
 	session_start();
 	//echo 'coucou';
 	//echo $_SESSION['login'].'/'.$_GET['NomJeu'];
+	$today = date_create("Now");
 	if(isset($_SESSION['login']))
 	{		
 		if(isset($_GET['NomJeu']))
@@ -47,8 +48,11 @@
 			$_SESSION['creneauMin'] = date_create($_SESSION['creneauMin']);
 			$_SESSION['creneauMax'] = date_create($_SESSION['creneauMax']);
 			//echo $_SESSION['creneauMin'];
-			include('Ajouter.php');
-			header("Refresh:0;");
+			if($_SESSION['creneauMax'] > $today)
+			{
+				include('Ajouter.php');
+				header("Refresh:0;");
+			}else {echo 'Date non valide';}
 		}
 		}//else {include("MonPanier.php");}
 ?>

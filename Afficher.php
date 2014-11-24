@@ -111,6 +111,7 @@ if(isset($_POST['connect']))
 				 		$calculNb = $calculNb.$Order;
 					$nbResult = mysql_result(mysql_query($calculNb), 0);
 					
+					
 							$nbJeu = 0;
 							if(isset($_SESSION['login']))
 							{
@@ -120,9 +121,13 @@ if(isset($_POST['connect']))
 						
 				//echo $Where.' / '.$calculNb.' / '.$nbResult.'<br>'.$Select;
 					$indice = 0;	
-					while($dataset = mysql_fetch_array($result))
-					{
+				while($dataset = mysql_fetch_array($result))
+				{
 						if($indice %4 == 0 ) {echo '</tr><tr>';}
+						
+						$selectLudo = "SELECT * FROM jeuxludotheque WHERE NbJeuxDispos > 0 AND Nom = '".$dataset['Jeu']."'";
+						$selectJeuxLudo = mysql_fetch_array(mysql_query($selectLudo));
+						//echo $selectJeuxLudo;
 						echo '<td>';
 						$indice++;
 						if($dataset['DateDeSortie'] >= date_format($dateToday, 'Y-m-d'))
@@ -136,6 +141,11 @@ if(isset($_POST['connect']))
 							echo '<p style="position: absoluteheight: 50px;">';
 							echo '<img class="attachment" src="IMG/New.png" ';
 							if($nbResult == 1){echo ' style="height: 150px"';}else {echo '"';}
+							echo' >';
+						}elseif($selectJeuxLudo == 0)
+						{
+							echo '<img class="attachment" src="IMG/None.png" alt="Plus en stock" ';
+							if($nbResult == 1){echo ' style="height: 150px"';}
 							echo' >';
 						}
 					//if($nbResult == 1){echo ' style="font-size: 50px;" ';}
@@ -166,10 +176,14 @@ if(isset($_POST['connect']))
 						if($dataset["TypeJeux"] != NULL)
 							echo '<b>'.$dataset["TypeJeux"].'</b><br>';
 						echo $dataset["Description"].'</p>';
-						echo '<form method="post" ';
+						
+						if($selectJeuxLudo != 0)
+						{
+							echo '<form method="post" ';
 							if(isset($_SESSION['login']))
 							{
 									echo ' action="AjouterAuPanier.php?NomJeu='.$dataset["Jeu"].'" >';
+									if(isset($dataset['CreneauMin']))
 								echo '<u>Créneaux de réservation:</u> <br>de '.$dataset['CreneauMin'].' à '.$dataset['CreneauMax'];
 							$selection = "SELECT * FROM paniers WHERE Jeu = '".$dataset['Jeu']."' AND Client = '".$_SESSION['login']."'";
 							//echo $selection;
@@ -179,6 +193,7 @@ if(isset($_POST['connect']))
 								}elseif(isset($_SESSION['login']) && $resultat != NULL) {
 									echo '<br><input type="submit" value="Retirer du panier" name="_RetirePanier" />';
 								}
+						}
 							echo '</form></td>';
 							
 							/*
@@ -190,11 +205,12 @@ if(isset($_POST['connect']))
 									//echo 'Ajouter au panier" name="_RetirePanier" />';
 								//}
 							echo '</form></td>';*/
-					}
-					echo "</tr></table>";
-					
-					if($indice == 0)
-						echo "Aucune donnée dans la base correspondante";
+						
+				}
+				echo "</tr></table>";
+				
+				if($indice == 0)
+					echo "Aucune donnée dans la base correspondante";
 						
 		}
 ?>

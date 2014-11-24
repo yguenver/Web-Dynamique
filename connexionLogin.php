@@ -9,7 +9,7 @@
 			$mdpClient = $_POST['mdp'];
 			$Where = " WHERE Login = '".$loginClient."';";
 			$Select = "SELECT * FROM client".$Where;
-			echo $Select;
+			//echo $Select;
 			$result = mysql_query($Select);
 			$LeClient = mysql_fetch_assoc($result);
 			if($LeClient != NULL)
@@ -23,7 +23,7 @@
 					include('MonPanier.php');
 					$today = date_create('Now');
 					$selection = "DELETE FROM paniers WHERE CreneauMax < '". date_format($today, "Y-m-d H:i:s")."'";
-					echo $selection;
+					//echo $selection;
 					mysql_query($selection);
 					
 				}
