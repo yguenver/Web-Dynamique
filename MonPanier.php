@@ -34,9 +34,9 @@
 			<!--<a href="">Accueil</a></li> <!-- onclick= document.getElementById("Nouveaute").submit()-->
 			<li>
 				<form id="Nouveautes" name="Nouveautes" method="post" class="menu" >
-					<input type="submit" name="Nouveaute" class="menu" value="Nouveautés" />
+					<input type="submit" name="Nouveaute" class="menu" value="NouveautÃ©s" />
 				</form>
-				<!--<a href="#" onclick='Nouveaute.submit()'>Nouveautés</a>-->
+				<!--<a href="#" onclick='Nouveaute.submit()'>NouveautÃ©s</a>-->
 			</li>
 			<li>
 			<form method="post" name="Trier" >
@@ -45,7 +45,7 @@
 					<option value="Jeu">Nom</option>
 					<option value="AgeMin">Age</option>
 					<option value="TypeJeux">Genre</option>
-					<option value="DateDeSortie">Nouveautés</option>
+					<option value="DateDeSortie">NouveautÃ©s</option>
 				</select>
 				<!--<a>Trier par...</a>
 				<ol class="Trie">
@@ -70,7 +70,7 @@
 			</li>
 			<li>
 			<?php
-				if($_SESSION['login'] == "arthur")
+				if($_SESSION['login'] == "arthur") //l'admin a pour login 'arthur'
 				{
 					echo '<form id="AjoutJeux" name="AjoutJeux" method="post" class="menu"><input type="submit" name="AjoutJeux" class="menu" value="Ajouter Jeu" /></form>';
 					echo '</li><li><form id="ModifJeux" name="ModifJeux" method="post" class="menu"><input type="submit" name="ModifJeux" class="menu" value="Modifier Jeu" /></form>';
