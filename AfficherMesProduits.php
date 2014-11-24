@@ -93,7 +93,7 @@ if($_SESSION['login'] != "arthur")
 					}
 						
 							if($Select == "SELECT * FROM jeux INNER JOIN paniers USING (Jeu) WHERE Client = '".$loginClient."'")
-							echo "<center><u>Vos Réservations</u></center>";
+							echo "<center><u>Vos RÃ©servations</u></center>";
 						
 						//$calculNb = "SELECT COUNT(*) FROM jeux";
 							//if($Where != NULL){$calculNb = $calculNb.$Where;}
@@ -153,9 +153,9 @@ if($_SESSION['login'] != "arthur")
 							///////////etoile/
 							if($dataset["AgeMax"] != 666)
 							{
-								echo "<u>de ".$dataset["AgeMin"]." à ".$dataset["AgeMax"]." ans</u><br>";
+								echo "<u>de ".$dataset["AgeMin"]." Ã  ".$dataset["AgeMax"]." ans</u><br>";
 							}else {
-									echo "<u>à partir de ".$dataset["AgeMin"]." ans</u><br>";
+									echo "<u>Ã  partir de ".$dataset["AgeMin"]." ans</u><br>";
 								}
 							if($dataset["TypeJeux"] != NULL)
 								echo '<b>'.$dataset["TypeJeux"].'</b><br>';
@@ -223,9 +223,9 @@ if($_SESSION['login'] != "arthur")
 							echo '</a></form>';
 							if($dataset["AgeMax"] != 666)
 							{
-								echo "<u>de ".$dataset["AgeMin"]." à ".$dataset["AgeMax"]." ans</u><br>";
+								echo "<u>de ".$dataset["AgeMin"]." Ã  ".$dataset["AgeMax"]." ans</u><br>";
 							}else {
-									echo "<u>à partir de ".$dataset["AgeMin"]." ans</u><br>";
+									echo "<u>Ã  partir de ".$dataset["AgeMin"]." ans</u><br>";
 								}
 							if($dataset["TypeJeux"] != NULL)
 								echo '<b>'.$dataset["TypeJeux"].'</b><br>';
@@ -235,7 +235,7 @@ if($_SESSION['login'] != "arthur")
 							{
 									echo ' action="AjouterAuPanier.php?NomJeu='.$dataset["Jeu"].'" >';
 									if(isset($dataset['CreneauMin']))
-								echo '<u>Créneaux de réservation:</u> <br>de '.$dataset['CreneauMin'].' à '.$dataset['CreneauMax'];
+								echo '<u>CrÃ©neaux de rÃ©servation:</u> <br>de '.$dataset['CreneauMin'].' Ã  '.$dataset['CreneauMax'];
 							$selection = "SELECT * FROM paniers WHERE Jeu = '".$dataset['Jeu']."' AND Client = '".$_SESSION['login']."'";
 							//echo $selection;
 							$resultat = mysql_fetch_assoc(mysql_query($selection));
@@ -254,7 +254,7 @@ if($_SESSION['login'] != "arthur")
 						echo "</p></tr></table>";
 					
 						if($indice == 0)
-							echo "Aucune donnée dans la base correspondante";
+							echo "Aucune donnÃ©e dans la base correspondante";
 	//}
 }else //if login = arthur 
 {
@@ -311,7 +311,7 @@ if($_SESSION['login'] != "arthur")
 		if($_POST['DescriptionJeuModif'] != NULL){$updateJeu .= " Description = '".$_POST['DescriptionJeuModif']."'" ;}
 		if($_POST['DateSortieJeuModif'] != NULL){$updateJeu .= " DateDeSortie = '".$_POST['DateSortieJeuModif']."'" ;}
 		$updateJeu .= " WHERE Jeu = '".$_POST['NomJeuModif']."'";
-		if($updateJeu != "UPDATE jeuxludotheque SET WHERE Jeu = '".$_POST['NomJeuModif']."'")
+		if($updateJeu != "UPDATE jeux SET WHERE Jeu = '".$_POST['NomJeuModif']."'")
 			mysql_query($updateJeu);
 	}
 }
